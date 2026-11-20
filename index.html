@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forecast Gallery: check the weather anywhere and see public-domain masterpieces from the Art Institute of Chicago that match the sky.">
+  <title>Forecast Gallery | Weather Meets Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-sky="clear">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Weather &times; Art</p>
+      <h1>Forecast Gallery</h1>
+      <p class="tagline">Look up the weather anywhere in the world and step into a gallery of paintings that share its sky.</p>
+
+      <search>
+        <form id="search-form" class="search-form" autocomplete="off">
+          <label for="city-input">Search for a city</label>
+          <div class="search-row">
+            <input id="city-input" name="city" type="search" placeholder="e.g. Paris, Tokyo, East Lansing" required minlength="2">
+            <button type="submit">Search</button>
+            <button type="button" id="locate-btn" class="secondary">Use my location</button>
+          </div>
+        </form>
+        <ul id="city-results" class="city-results" hidden></ul>
+      </search>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="weather" class="weather" aria-labelledby="weather-heading" hidden>
+      <h2 id="weather-heading">Today&rsquo;s Sky in <span id="place-name"></span></h2>
+      <div class="weather-grid">
+        <article class="current card" aria-label="Current conditions">
+          <p class="current-icon" id="current-icon" aria-hidden="true"></p>
+          <p class="current-temp"><span id="current-temp"></span><span class="unit" id="temp-unit">&deg;F</span></p>
+          <p class="current-desc" id="current-desc"></p>
+          <dl class="current-details">
+            <div><dt>Feels like</dt><dd id="feels-like"></dd></div>
+            <div><dt>Humidity</dt><dd id="humidity"></dd></div>
+            <div><dt>Wind</dt><dd id="wind"></dd></div>
+            <div><dt>Local time</dt><dd id="local-time"></dd></div>
+          </dl>
+          <div class="unit-toggle" role="group" aria-label="Temperature units">
+            <button type="button" data-unit="fahrenheit" aria-pressed="true">&deg;F</button>
+            <button type="button" data-unit="celsius" aria-pressed="false">&deg;C</button>
+          </div>
+        </article>
+
+        <section class="forecast card" aria-labelledby="forecast-heading">
+          <h3 id="forecast-heading">7-Day Forecast</h3>
+          <ol id="forecast-list" class="forecast-list"></ol>
+        </section>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery" aria-labelledby="gallery-heading" hidden>
+      <div class="gallery-head">
+        <div>
+          <h2 id="gallery-heading">Now Showing: <em id="theme-name"></em></h2>
+          <p class="gallery-sub">Public-domain works from the Art Institute of Chicago chosen to match the current weather.</p>
+        </div>
+        <button type="button" id="shuffle-btn" class="secondary">Shuffle the collection</button>
+      </div>
+
+      <figure class="featured card" id="featured">
+        <div class="frame">
+          <img id="featured-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="">
+        </div>
+        <figcaption class="placard">
+          <h3 id="featured-title"></h3>
+          <p id="featured-artist" class="artist"></p>
+          <p id="featured-date" class="date"></p>
+          <p id="featured-medium" class="medium"></p>
+          <a id="featured-link" href="https://www.artic.edu/" target="_blank" rel="noopener">View at the Art Institute of Chicago</a>
+        </figcaption>
+      </figure>
+
+      <h3 class="visually-hidden">More works in this exhibit</h3>
+      <ul id="thumbs" class="thumbs"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Weather and geocoding data by <a href="https://open-meteo.com/">Open-Meteo</a>. Artwork images and data by the <a href="https://api.artic.edu/docs/">Art Institute of Chicago API</a>.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
